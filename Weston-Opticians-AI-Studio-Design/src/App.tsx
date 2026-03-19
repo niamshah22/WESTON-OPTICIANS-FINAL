@@ -98,15 +98,15 @@ const Navbar = () => {
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <a href="#" className="flex items-center">
-          <img 
-            src="/images/weston-logo.png" 
-            alt="Weston Opticians" 
+          <img
+            src="/images/weston-logo.png"
+            alt="Weston Opticians"
             className="h-14 md:h-16 w-auto"
           />
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden xl:flex items-center gap-8">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
@@ -121,7 +121,7 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden p-2"
+          className="xl:hidden p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}
@@ -135,7 +135,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white absolute top-full left-0 right-0 border-t border-zinc-100 overflow-hidden"
+            className="xl:hidden bg-white absolute top-full left-0 right-0 border-t border-zinc-100 overflow-hidden"
           >
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (
@@ -159,10 +159,11 @@ const Navbar = () => {
 
 const Hero = () => {
   const images = [
-    "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?q=80&w=2000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1509633289647-0261b77ec73c?q=80&w=2000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1508243771214-6e95d137426b?q=80&w=2000&auto=format&fit=crop"
+    "/images/hero-1.jpg", // Shop interior
+    "/images/hero-2.jpg", // Elderly couple on park bench
+    "/images/hero-3.jpg", // Shop front exterior
+    "/images/hero-4.jpg", // Elderly couple on beach with sunglasses
+    "/images/hero-5.jpg", // Additional photo
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -174,95 +175,140 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Shared image carousel
+  const ImageCarousel = ({ className }: { className?: string }) => (
+    <AnimatePresence>
+      <motion.img
+        key={currentIndex}
+        src={images[currentIndex]}
+        alt="Weston Opticians"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1.2, ease: "easeInOut" }}
+        className={cn("absolute inset-0 w-full h-full object-cover", className)}
+        referrerPolicy="no-referrer"
+      />
+    </AnimatePresence>
+  );
+
+  // Shared progress dots
+  const ProgressDots = ({ light = false }: { light?: boolean }) => (
+    <div className="flex gap-2">
+      {images.map((_, i) => (
+        <div
+          key={i}
+          className={cn(
+            "h-1 transition-all duration-500 rounded-full",
+            i === currentIndex
+              ? light ? "w-8 bg-brand-purple-light" : "w-8 bg-brand-purple"
+              : light ? "w-4 bg-white/30" : "w-4 bg-zinc-300"
+          )}
+        />
+      ))}
+    </div>
+  );
+
   return (
-    <section className="relative min-h-screen bg-white overflow-hidden">
-      <div className="container mx-auto px-6 md:px-12 pt-28 md:pt-0 md:min-h-screen flex flex-col md:flex-row items-center gap-8 md:gap-16">
-        
-        {/* Left — Text Content */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="w-full md:w-1/2 py-8 md:py-0 order-2 md:order-1"
-        >
-          <span className="inline-block px-4 py-1.5 bg-brand-purple/10 text-brand-purple rounded-full text-sm font-bold mb-6 tracking-wider uppercase">
-            Independent & Local
-          </span>
-          <h1 className="text-5xl sm:text-6xl lg:text-8xl font-display font-bold leading-[0.9] mb-8 tracking-tighter">
-            EYE CARE YOU <br />
-            <span className="text-brand-purple italic">CAN TRUST.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-zinc-600 mb-10 max-w-lg leading-relaxed font-medium">
-            Personalised vision care using the latest technology. We take the time to understand your eyes, because your vision is as unique as you are.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button className="group">
-              Book Your Eye Test
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="outline">Explore Collections</Button>
+    <section>
+      {/* ===== MOBILE / TABLET LAYOUT (below xl) ===== */}
+      <div className="xl:hidden">
+        {/* Image section */}
+        <div className="relative aspect-[4/3] sm:aspect-video overflow-hidden">
+          <ImageCarousel />
+          {/* Top gradient for logo legibility */}
+          <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-white/80 to-transparent z-[1]" />
+          {/* Subtle bottom gradient for smooth transition */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
+          {/* Progress dots over image */}
+          <div className="absolute bottom-6 left-6 z-10">
+            <ProgressDots light />
           </div>
+        </div>
 
-          {/* Progress Indicators */}
-          <div className="flex gap-2 mt-12">
-            {images.map((_, i) => (
-              <button 
-                key={i}
-                onClick={() => setCurrentIndex(i)}
-                className={cn(
-                  "h-1.5 transition-all duration-500 rounded-full cursor-pointer",
-                  i === currentIndex ? "w-10 bg-brand-purple" : "w-5 bg-zinc-200 hover:bg-zinc-300"
-                )} 
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Right — Image Gallery */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full md:w-1/2 order-1 md:order-2 relative"
-        >
-          {/* Decorative accent shape */}
-          <div className="absolute -top-6 -right-6 w-full h-full bg-brand-purple/10 rounded-3xl hidden md:block" />
-          <div className="absolute -bottom-6 -left-6 w-2/3 h-2/3 bg-brand-purple/5 rounded-3xl hidden md:block" />
-          
-          {/* Image container */}
-          <div className="relative aspect-[4/3] md:aspect-[3/4] lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-            <AnimatePresence mode="wait">
-              <motion.img 
-                key={currentIndex}
-                src={images[currentIndex]} 
-                alt="Modern Eyewear" 
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 1.2, ease: "easeInOut" }}
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </AnimatePresence>
-            {/* Subtle gradient overlay at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent" />
-            
-            {/* Mobile-only CTA overlay — above the fold */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:hidden">
-              <h2 className="text-2xl font-display font-bold text-white leading-tight mb-3">
-                Eye Care You <span className="text-brand-purple-light italic">Can Trust.</span>
-              </h2>
-              <Button className="w-full group">
+        {/* Text section */}
+        <div className="px-6 py-10 bg-white">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block px-4 py-1 bg-brand-purple/10 text-brand-purple rounded-full text-sm font-bold mb-6 tracking-wider uppercase">
+              Independent & Local
+            </span>
+            <h1 className="text-5xl sm:text-6xl font-serif font-bold leading-[0.95] mb-6 tracking-tight text-black">
+              Eye Care You<br />Can <span className="text-brand-purple italic">Trust</span>.
+            </h1>
+            <p className="text-lg text-zinc-600 max-w-lg leading-relaxed font-medium mb-8">
+              Personalised vision care using the latest technology. We take the time to understand your eyes, because your vision is as unique as you are.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button className="group">
                 Book Your Eye Test
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
+              <Button variant="outline">Explore Collections</Button>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Bottom Marquee Bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-black text-white py-4 overflow-hidden whitespace-nowrap z-10">
+      {/* ===== DESKTOP LAYOUT (xl and above) ===== */}
+      <div className="hidden xl:block relative h-screen min-h-[700px] overflow-hidden">
+        {/* Full-bleed background */}
+        <div className="absolute inset-0 z-0">
+          <ImageCarousel />
+          {/* Top gradient for logo legibility */}
+          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white/70 to-transparent z-[1]" />
+          {/* Bottom gradient for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        </div>
+
+        {/* Bottom-aligned content */}
+        <div className="absolute bottom-16 left-0 right-0 z-10 px-12">
+          <div className="max-w-7xl mx-auto flex items-end justify-between gap-8">
+            {/* Text — bottom left */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-2xl"
+            >
+              <span className="inline-block px-4 py-1 bg-white/15 backdrop-blur-sm text-white rounded-full text-sm font-bold mb-6 tracking-wider uppercase border border-white/20">
+                Independent & Local
+              </span>
+              <h1 className="text-8xl font-serif font-bold leading-[0.95] mb-6 tracking-tight text-white [text-shadow:_0_2px_20px_rgba(0,0,0,0.5)]">
+                Eye Care You<br />Can <span className="text-brand-purple-light italic">Trust</span>.
+              </h1>
+              <p className="text-lg text-white/80 max-w-lg leading-relaxed font-medium">
+                Personalised vision care using the latest technology. We take the time to understand your eyes, because your vision is as unique as you are.
+              </p>
+            </motion.div>
+
+            {/* CTA — bottom right */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex gap-4 pb-2"
+            >
+              <Button className="group border border-white/20 bg-white text-black hover:bg-white/90">
+                Book Your Eye Test
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button variant="outline" className="border-white/40 text-white hover:bg-white/10">Explore Collections</Button>
+            </motion.div>
+          </div>
+
+          {/* Progress Indicators */}
+          <div className="max-w-7xl mx-auto mt-8">
+            <ProgressDots light />
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar (shared) */}
+      <div className="bg-black text-white py-4 overflow-hidden whitespace-nowrap">
         <div className="flex animate-marquee gap-12 items-center">
           {[...Array(10)].map((_, i) => (
             <span key={i} className="text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
@@ -637,12 +683,13 @@ const Footer = () => (
     <div className="container mx-auto px-6 md:px-12">
       <div className="grid md:grid-cols-4 gap-12 mb-20">
         <div className="col-span-2">
-          <a href="#" className="flex items-center mb-8">
-            <img 
-              src="/images/weston-logo.png" 
-              alt="Weston Opticians" 
-              className="h-16 w-auto brightness-0 invert"
-            />
+          <a href="#" className="flex items-center gap-2 mb-8">
+            <div className="w-10 h-10 bg-brand-purple rounded-lg flex items-center justify-center">
+              <Eye className="text-white w-6 h-6" />
+            </div>
+            <span className="text-2xl font-display font-bold tracking-tight">
+              WESTON<span className="text-brand-purple">.</span>
+            </span>
           </a>
           <p className="text-zinc-500 max-w-sm mb-8 leading-relaxed">
             Independent eye care specialists dedicated to clinical excellence and personal service since 1994.
