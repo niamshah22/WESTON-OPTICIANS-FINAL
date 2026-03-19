@@ -4,8 +4,8 @@
     {
       "name": "weston-opticians-dev",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["vite", "--host=0.0.0.0"],
-      "port": 3000,
+      "runtimeArgs": ["vite", "--host=0.0.0.0", "--port=5180"],
+      "port": 5180,
       "autoPort": true,
       "cwd": "Weston-Opticians-AI-Studio-Design"
     }

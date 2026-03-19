@@ -46,6 +46,12 @@ export const Navbar = () => {
             <Phone className="w-5 h-5" />
           </a>
         </div>
+        <Link
+          to="/contact"
+          className="block w-full bg-brand-purple text-white text-center text-sm font-medium py-2"
+        >
+          Book Your Appointment
+        </Link>
       </div>
 
       {/* ===== DESKTOP (xl and above) ===== */}
