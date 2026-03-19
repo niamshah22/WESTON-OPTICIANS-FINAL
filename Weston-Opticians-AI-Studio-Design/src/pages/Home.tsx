@@ -143,16 +143,46 @@ const Hero = () => {
 };
 
 const BrandLogos = () => {
-  const brands = ["RAY-BAN", "OAKLEY", "GUCCI", "PRADA", "TOM FORD", "CHANEL", "OLIVER PEOPLES"];
+  const brands = [
+    { name: "Ray-Ban", logo: "/images/brands/rayban.png" },
+    { name: "Lindberg", logo: "/images/brands/lindberg.png" },
+    { name: "Oakley", logo: "/images/brands/oakley.png" },
+    { name: "Gucci", logo: "/images/brands/gucci.png" },
+    { name: "Prada", logo: "/images/brands/prada.png" },
+    { name: "D&G", logo: "/images/brands/dg.png" },
+    { name: "Cazal", logo: "/images/brands/cazal.png" },
+    { name: "Tiffany", logo: "/images/brands/tiffany.png" },
+    { name: "Jimmy Choo", logo: "/images/brands/jimmychoo.png" },
+  ];
+
   return (
-    <section className="py-16 bg-zinc-50 border-y border-zinc-100">
-      <div className="container mx-auto px-6">
-        <p className="text-center text-xs font-bold text-zinc-400 uppercase tracking-[0.3em] mb-10">
-          Curated Designer Collections
-        </p>
-        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-          {brands.map(brand => (
-            <span key={brand} className="text-2xl font-display font-bold tracking-tighter">{brand}</span>
+    <section className="py-14 bg-zinc-50 border-y border-zinc-100">
+      <style>{`
+        @keyframes brand-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+      <p className="text-center text-xs font-bold text-zinc-400 uppercase tracking-[0.3em] mb-10">
+        Our Brands
+      </p>
+      <div
+        className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+        onMouseEnter={e => { e.currentTarget.querySelector<HTMLDivElement>('.brand-track')!.style.animationPlayState = 'paused'; }}
+        onMouseLeave={e => { e.currentTarget.querySelector<HTMLDivElement>('.brand-track')!.style.animationPlayState = 'running'; }}
+      >
+        <div
+          className="brand-track flex items-center gap-16 w-max"
+          style={{ animation: 'brand-scroll 30s linear infinite' }}
+        >
+          {[...brands, ...brands].map((brand, i) => (
+            <img
+              key={`${brand.name}-${i}`}
+              src={brand.logo}
+              alt={brand.name}
+              className="h-20 w-auto object-contain transition-all duration-300"
+              draggable={false}
+            />
           ))}
         </div>
       </div>
