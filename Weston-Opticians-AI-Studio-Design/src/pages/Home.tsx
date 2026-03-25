@@ -233,6 +233,39 @@ const AboutPreview = () => {
   );
 };
 
+const BookAppointment = () => {
+  return (
+    <section className="py-16 bg-zinc-50">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid md:grid-cols-2 rounded-2xl overflow-hidden shadow-sm border border-zinc-100">
+          {/* Left: Image */}
+          <div className="relative min-h-[280px]">
+            <img
+              src="/images/opticians_test.jpg"
+              alt="Optician helping customer choose frames"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+          {/* Right: CTA */}
+          <div className="bg-brand-purple/10 flex items-center px-10 py-12 md:px-14">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-black mb-8">
+                Book Your Eye Test
+              </h2>
+              <Link to="/contact">
+                <Button className="group">
+                  Request an Appointment
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Testimonials = () => {
   const reviews = [
     { name: "Sarah Jenkins", role: "Local Resident", text: "The most thorough eye exam I've ever had. They explained everything so clearly and helped me find frames that actually suit my face shape.", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop" },
@@ -289,6 +322,7 @@ export default function Home() {
       <Hero />
       <BrandLogos />
       <AboutPreview />
+      <BookAppointment />
       <Testimonials />
     </>
   );
