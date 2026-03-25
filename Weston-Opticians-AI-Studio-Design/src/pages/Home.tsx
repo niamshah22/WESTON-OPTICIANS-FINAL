@@ -60,7 +60,6 @@ const Hero = () => {
       <div className="xl:hidden">
         <div className="relative aspect-[4/3] sm:aspect-video overflow-hidden">
           <ImageCarousel />
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
           <div className="absolute bottom-6 left-6 z-10">
             <ProgressDots light />
           </div>
