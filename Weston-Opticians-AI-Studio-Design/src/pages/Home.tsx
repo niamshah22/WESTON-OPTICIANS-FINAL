@@ -182,7 +182,7 @@ const BrandLogos = () => {
               key={`${brand.name}-${i}`}
               src={brand.logo}
               alt={brand.name}
-              className="h-20 w-auto object-contain transition-all duration-300"
+              className="h-16 max-w-[160px] w-auto object-contain transition-all duration-300"
               draggable={false}
             />
           ))}
