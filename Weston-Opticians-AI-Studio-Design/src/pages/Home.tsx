@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Eye, ShieldCheck, Award, Star, ArrowRight, ChevronRight } from 'lucide-react';
+import { Eye, Star, ArrowRight, ChevronRight } from 'lucide-react';
 import { cn, Button, SectionTitle } from '../components/ui';
 
 const Hero = () => {
@@ -192,35 +192,42 @@ const BrandLogos = () => {
   );
 };
 
-const ServicesPreview = () => {
-  const services = [
-    { title: "Comprehensive Eye Tests", desc: "Detailed 45-minute consultations using advanced diagnostic tools.", icon: <Eye className="w-8 h-8" />, image: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=800&auto=format&fit=crop" },
-    { title: "OCT Retinal Imaging", desc: "3D hospital-grade scans for early detection of eye conditions.", icon: <ShieldCheck className="w-8 h-8" />, image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop" },
-    { title: "Myopia Management", desc: "Specialised treatments to slow short-sightedness in children.", icon: <Award className="w-8 h-8" />, image: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800&auto=format&fit=crop" },
-  ];
-
+const AboutPreview = () => {
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-6 md:px-12">
-        <SectionTitle subtitle="We combine clinical excellence with a personal approach to ensure your eyes receive the best possible care.">
-          Clinical <span className="text-brand-purple">Excellence.</span>
-        </SectionTitle>
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, i) => (
-            <motion.div key={service.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="group cursor-pointer">
-              <div className="relative h-64 mb-6 overflow-hidden rounded-2xl">
-                <img src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-                <div className="absolute top-4 left-4 w-12 h-12 bg-white rounded-xl flex items-center justify-center text-brand-purple shadow-lg">{service.icon}</div>
-              </div>
-              <h3 className="text-2xl font-display font-bold mb-3 group-hover:text-brand-purple transition-colors">{service.title}</h3>
-              <p className="text-zinc-600 mb-4 leading-relaxed">{service.desc}</p>
-              <Link to="/eye-care" className="inline-flex items-center gap-2 font-bold text-sm uppercase tracking-wider text-brand-purple group-hover:gap-3 transition-all">
-                Learn More <ChevronRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+    <section className="grid md:grid-cols-2 min-h-[500px]">
+      {/* Left: Text */}
+      <div className="bg-white flex items-center px-8 py-16 md:px-16 lg:px-20">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-lg"
+        >
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-black leading-tight mb-8">
+            Your family-run, local opticians since <span className="text-brand-purple">1982</span>
+          </h2>
+          <p className="text-zinc-600 leading-relaxed mb-6">
+            We believe in providing you with a good old fashioned customer service: our opticians take their time over every eye examination ensuring that every test is performed to the highest standard. Our friendly staff will help you choose from a wide range of frames, from budget to designer brands, sunglasses or contact lenses and also advise on our extensive range of fantastic lenses.
+          </p>
+          <p className="text-zinc-600 leading-relaxed mb-8">
+            When Weston Opticians was first established, the ethos printed on the back of the till receipts was &ldquo;Friendly, Personal and Professional&rdquo;. We have remained true to this aspiration throughout our existence.
+          </p>
+          <Link
+            to="/about"
+            className="inline-flex items-center gap-2 font-bold text-brand-purple underline underline-offset-4 hover:text-brand-purple-dark transition-colors"
+          >
+            Our Story
+          </Link>
+        </motion.div>
+      </div>
+      {/* Right: Image */}
+      <div className="relative min-h-[400px]">
+        <img
+          src="/images/about-preview.jpg"
+          alt="Optician performing an eye examination"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
       </div>
     </section>
   );
@@ -281,7 +288,7 @@ export default function Home() {
     <>
       <Hero />
       <BrandLogos />
-      <ServicesPreview />
+      <AboutPreview />
       <Testimonials />
     </>
   );
