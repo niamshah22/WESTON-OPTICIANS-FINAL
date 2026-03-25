@@ -92,38 +92,41 @@ const Hero = () => {
       </div>
 
       {/* Desktop */}
-      <div className="hidden xl:block relative h-[85vh] min-h-[600px] overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <ImageCarousel />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-        </div>
-        <div className="absolute bottom-16 left-0 right-0 z-10 px-12">
-          <div className="max-w-7xl mx-auto flex items-end justify-between gap-8">
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-2xl">
-              <span className="inline-block px-4 py-1 bg-white/15 backdrop-blur-sm text-white rounded-full text-sm font-bold mb-6 tracking-wider uppercase border border-white/20">
+      <div className="hidden xl:flex items-center min-h-[600px] overflow-hidden bg-white px-12 py-16 gap-12">
+        {/* Left: Text */}
+        <div className="w-1/2 flex items-center">
+          <div className="max-w-xl mx-auto">
+            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+              <span className="inline-block px-4 py-1 bg-brand-purple/10 text-brand-purple rounded-full text-sm font-bold mb-6 tracking-wider uppercase">
                 Independent & Local
               </span>
-              <h1 className="text-8xl font-serif font-bold leading-[0.95] mb-6 tracking-tight text-white [text-shadow:_0_2px_20px_rgba(0,0,0,0.5)]">
-                Eye Care You<br />Can <span className="text-brand-purple-light italic">Trust</span>.
+              <h1 className="text-7xl font-serif font-bold leading-[0.95] mb-6 tracking-tight text-black">
+                Eye Care You<br />Can <span className="text-brand-purple italic">Trust</span>.
               </h1>
-              <p className="text-lg text-white/80 max-w-lg leading-relaxed font-medium">
+              <p className="text-lg text-zinc-600 max-w-lg leading-relaxed font-medium mb-10">
                 Personalised vision care using the latest technology. We take the time to understand your eyes, because your vision is as unique as you are.
               </p>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="flex gap-4 pb-2">
-              <Link to="/contact">
-                <Button className="group border border-white/20 bg-white text-black hover:bg-white/90">
-                  Book Your Eye Test
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              <Link to="/eyewear">
-                <Button variant="outline" className="border-white/40 text-white hover:bg-white/10">Explore Collections</Button>
-              </Link>
+              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="flex gap-4">
+                <Link to="/contact">
+                  <Button className="group">
+                    Book Your Eye Test
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link to="/eyewear">
+                  <Button variant="outline">Explore Collections</Button>
+                </Link>
+              </motion.div>
             </motion.div>
           </div>
-          <div className="max-w-7xl mx-auto mt-8">
-            <ProgressDots light />
+        </div>
+        {/* Right: Image */}
+        <div className="w-1/2 flex flex-col gap-4">
+          <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-xl">
+            <ImageCarousel />
+          </div>
+          <div className="flex justify-center">
+            <ProgressDots />
           </div>
         </div>
       </div>
