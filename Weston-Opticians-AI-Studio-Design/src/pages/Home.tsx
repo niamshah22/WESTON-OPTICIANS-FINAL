@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Eye, Star, ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { cn, Button, SectionTitle } from '../components/ui';
+import GoogleReviews from '../components/GoogleReviews';
 
 const Hero = () => {
   const images = [
@@ -266,56 +267,6 @@ const BookAppointment = () => {
   );
 };
 
-const Testimonials = () => {
-  const reviews = [
-    { name: "Sarah Jenkins", role: "Local Resident", text: "The most thorough eye exam I've ever had. They explained everything so clearly and helped me find frames that actually suit my face shape.", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop" },
-    { name: "David Thompson", role: "Architect", text: "Incredible selection of designer frames you won't find in the big chains. The personal service is what keeps me coming back year after year.", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop" },
-    { name: "Emma Wilson", role: "Teacher", text: "Brilliant with children. My daughter was nervous about her first test but the team made it such a fun and positive experience.", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" },
-  ];
-
-  return (
-    <section className="py-24 bg-zinc-50">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <SectionTitle subtitle="Don't just take our word for it. Here's what our community has to say.">
-            Trusted by the <br /> <span className="text-brand-purple">Community.</span>
-          </SectionTitle>
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-zinc-100 flex items-center gap-6">
-            <div className="flex flex-col items-center">
-              <span className="text-4xl font-display font-bold">4.9</span>
-              <div className="flex text-yellow-400">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-              </div>
-            </div>
-            <div className="h-12 w-px bg-zinc-100" />
-            <div>
-              <p className="text-sm font-bold">Google Reviews</p>
-              <p className="text-xs text-zinc-500">Based on 248 verified reviews</p>
-            </div>
-          </div>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {reviews.map((review, i) => (
-            <motion.div key={review.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-white p-8 rounded-3xl shadow-sm border border-zinc-100 hover:shadow-md transition-shadow">
-              <div className="flex gap-1 text-yellow-400 mb-6">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-              </div>
-              <p className="text-zinc-700 italic mb-8 leading-relaxed">"{review.text}"</p>
-              <div className="flex items-center gap-4">
-                <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full object-cover" referrerPolicy="no-referrer" />
-                <div>
-                  <p className="font-bold text-sm">{review.name}</p>
-                  <p className="text-xs text-zinc-500">{review.role}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
 export default function Home() {
   return (
     <>
@@ -323,7 +274,7 @@ export default function Home() {
       <BrandLogos />
       <AboutPreview />
       <BookAppointment />
-      <Testimonials />
+      <GoogleReviews />
     </>
   );
 }
