@@ -7,7 +7,7 @@ export const Footer = () => (
       <div className="grid md:grid-cols-4 gap-12 mb-20">
         <div className="col-span-2">
           <Link to="/" className="mb-8 inline-block">
-            <img src="/images/weston-logo.png" alt="Weston Opticians" className="h-16 object-contain" />
+            <img src="/images/weston-logo-final.png" alt="Weston Opticians" className="h-16 object-contain" />
           </Link>
           <p className="text-zinc-500 max-w-sm mb-8 leading-relaxed">
             Independent eye care specialists dedicated to clinical excellence and personal service since 1982.
