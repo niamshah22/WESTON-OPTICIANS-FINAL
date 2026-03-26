@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { cn, Button, SectionTitle } from '../components/ui';
+import { useBookingModal } from '../components/BookingModal';
 import GoogleReviews from '../components/GoogleReviews';
 
 const Hero = () => {
+  const { openModal } = useBookingModal();
   const images = [
     "/images/hero-1.jpg",
     "/images/hero-2.jpg",
@@ -77,12 +79,10 @@ const Hero = () => {
               Personalised vision care using the latest technology. We take the time to understand your eyes, because your vision is as unique as you are.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact">
-                <Button className="group">
-                  Book Your Eye Test
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+              <Button className="group" onClick={openModal}>
+                Book Your Eye Test
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
               <Link to="/eyewear">
                 <Button variant="outline">Explore Collections</Button>
               </Link>
@@ -107,12 +107,10 @@ const Hero = () => {
                 Personalised vision care using the latest technology. We take the time to understand your eyes, because your vision is as unique as you are.
               </p>
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="flex gap-4">
-                <Link to="/contact">
-                  <Button className="group">
-                    Book Your Eye Test
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
+                <Button className="group" onClick={openModal}>
+                  Book Your Eye Test
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
                 <Link to="/eyewear">
                   <Button variant="outline">Explore Collections</Button>
                 </Link>
@@ -235,6 +233,7 @@ const AboutPreview = () => {
 };
 
 const BookAppointment = () => {
+  const { openModal } = useBookingModal();
   return (
     <section className="py-16 bg-zinc-50">
       <div className="container mx-auto px-6 md:px-12">
@@ -253,12 +252,10 @@ const BookAppointment = () => {
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-black mb-8">
                 Book Your Eye Test
               </h2>
-              <Link to="/contact">
-                <Button className="group">
-                  Request an Appointment
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+              <Button className="group" onClick={openModal}>
+                Request an Appointment
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
         </div>
