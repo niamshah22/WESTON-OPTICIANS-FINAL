@@ -1,11 +1,16 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+export const config = {
+  runtime: 'edge',
+};
 
-const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
-const GOOGLE_PLACE_ID = process.env.GOOGLE_PLACE_ID;
+export default async function handler(request: Request) {
+  const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
+  const GOOGLE_PLACE_ID = process.env.GOOGLE_PLACE_ID;
 
-export default async function handler(_req: VercelRequest, res: VercelResponse) {
   if (!GOOGLE_PLACES_API_KEY || !GOOGLE_PLACE_ID) {
-    return res.status(500).json({ error: 'Missing GOOGLE_PLACES_API_KEY or GOOGLE_PLACE_ID environment variables' });
+    return new Response(
+      JSON.stringify({ error: 'Missing GOOGLE_PLACES_API_KEY or GOOGLE_PLACE_ID environment variables' }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 
   try {
@@ -21,7 +26,10 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     if (!response.ok) {
       const errorText = await response.text();
       console.error('Google Places API error:', response.status, errorText);
-      return res.status(response.status).json({ error: 'Failed to fetch reviews from Google' });
+      return new Response(
+        JSON.stringify({ error: 'Failed to fetch reviews from Google' }),
+        { status: response.status, headers: { 'Content-Type': 'application/json' } }
+      );
     }
 
     const placeData = await response.json();
@@ -38,11 +46,18 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
       })),
     };
 
-    // Cache for 6 hours
-    res.setHeader('Cache-Control', 's-maxage=21600, stale-while-revalidate');
-    return res.json(transformed);
+    return new Response(JSON.stringify(transformed), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 's-maxage=21600, stale-while-revalidate',
+      },
+    });
   } catch (err) {
     console.error('Error fetching Google reviews:', err);
-    return res.status(500).json({ error: 'Internal server error' });
+    return new Response(
+      JSON.stringify({ error: 'Internal server error' }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 }
