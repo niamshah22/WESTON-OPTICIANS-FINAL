@@ -18,10 +18,10 @@ export const Footer = () => (
             Independent eye care specialists dedicated to clinical excellence and personal service since 1982.
           </p>
           <div className="flex gap-4">
-            <a href="#" className="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center hover:bg-brand-purple hover:border-brand-purple transition-all">
+            <a href="https://www.instagram.com/westonopticians/?hl=en" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center hover:bg-brand-purple hover:border-brand-purple transition-all">
               <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center hover:bg-brand-purple hover:border-brand-purple transition-all">
+            <a href="https://www.facebook.com/westonopticians" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center hover:bg-brand-purple hover:border-brand-purple transition-all">
               <Facebook className="w-5 h-5" />
             </a>
           </div>
