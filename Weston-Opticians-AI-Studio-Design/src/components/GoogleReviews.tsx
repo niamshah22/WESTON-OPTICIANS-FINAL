@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Star } from 'lucide-react';
-import { SectionTitle } from './ui';
 
 interface Review {
   authorName: string;
@@ -150,9 +149,14 @@ export default function GoogleReviews() {
 
       <div className="container mx-auto px-6 md:px-12 mb-14">
         <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-          <SectionTitle subtitle="Don't just take our word for it. Here's what our community has to say.">
-            Trusted by the <br /> <span className="text-brand-purple">Community.</span>
-          </SectionTitle>
+          <div className="mb-12">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-black">
+              Trusted by the <br /> <span className="text-brand-purple">Community.</span>
+            </h2>
+            <p className="text-zinc-500 text-lg max-w-md">
+              Don't just take our word for it. Here's what our community has to say.
+            </p>
+          </div>
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-zinc-100 flex items-center gap-6">
             <div className="flex flex-col items-center">
               <span className="text-4xl font-display font-bold">{rating.toFixed(1)}</span>
