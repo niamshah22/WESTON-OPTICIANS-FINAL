@@ -235,7 +235,7 @@ const AboutPreview = () => {
 const BookAppointment = () => {
   const { openModal } = useBookingModal();
   return (
-    <section className="py-16 bg-zinc-50">
+    <section className="pt-16 pb-8 bg-zinc-50">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-2 rounded-2xl overflow-hidden shadow-sm border border-zinc-100">
           {/* Left: Image */}
