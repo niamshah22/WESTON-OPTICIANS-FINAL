@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Phone } from 'lucide-react';
 import { cn, Button } from './ui';
+import { useBookingModal } from './BookingModal';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -17,6 +18,7 @@ const navLinks = [
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { openModal } = useBookingModal();
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -46,12 +48,12 @@ export const Navbar = () => {
             <Phone className="w-5 h-5" />
           </a>
         </div>
-        <Link
-          to="/contact"
+        <button
+          onClick={openModal}
           className="block w-full bg-brand-purple text-white text-center text-sm font-medium py-2"
         >
           Book Your Appointment
-        </Link>
+        </button>
       </div>
 
       {/* ===== DESKTOP (xl and above) ===== */}
@@ -100,9 +102,7 @@ export const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Link to="/contact">
-              <Button className="px-4 py-2 text-xs">Book Appointment</Button>
-            </Link>
+            <Button className="px-4 py-2 text-xs" onClick={openModal}>Book Appointment</Button>
           </div>
         </div>
       </div>
@@ -129,9 +129,7 @@ export const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <Link to="/contact">
-                <Button className="w-full">Book Appointment</Button>
-              </Link>
+              <Button className="w-full" onClick={() => { setIsMobileMenuOpen(false); openModal(); }}>Book Appointment</Button>
             </div>
           </motion.div>
         )}
