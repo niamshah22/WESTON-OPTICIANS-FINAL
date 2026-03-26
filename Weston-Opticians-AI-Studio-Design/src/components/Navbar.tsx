@@ -57,52 +57,37 @@ export const Navbar = () => {
       </div>
 
       {/* ===== DESKTOP (xl and above) ===== */}
-      <div className="hidden xl:block px-8">
-        <div className="flex items-center">
-          {/* Left: Nav links */}
-          <div className="flex items-center gap-4 flex-1 justify-end whitespace-nowrap">
-            {navLinks.slice(0, 4).map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={cn(
-                  "text-sm font-medium transition-colors",
-                  location.pathname === link.path
-                    ? "text-brand-purple"
-                    : "hover:text-brand-purple"
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* Center: Logo */}
-          <Link to="/" className="flex items-center shrink-0 mx-6">
+      <div className="hidden xl:block">
+        {/* Row 1: Info | Logo | CTA */}
+        <div className="flex items-center justify-between px-8 py-4">
+          <div className="flex-1" />
+          <Link to="/" className="flex items-center shrink-0">
             <img
               src="/images/weston-logo-final.png"
               alt="Weston Opticians"
-              className="h-20 w-auto"
+              className="h-28 w-auto"
             />
           </Link>
+          <div className="flex-1 flex justify-end">
+            <Button className="px-10 py-4 text-lg" onClick={openModal}>Book Appointment</Button>
+          </div>
+        </div>
 
-          {/* Right: Nav links + CTA */}
-          <div className="flex items-center gap-5 flex-1 justify-start whitespace-nowrap">
-            {navLinks.slice(4).map((link) => (
+        {/* Row 2: Nav links centered */}
+        <div className="bg-brand-purple px-8">
+          <div className="flex items-center justify-center gap-8 py-3">
+            {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 className={cn(
-                  "text-sm font-medium transition-colors",
-                  location.pathname === link.path
-                    ? "text-brand-purple"
-                    : "hover:text-brand-purple"
+                  "text-sm font-medium transition-colors text-white/80 hover:text-white",
+                  location.pathname === link.path && "text-white"
                 )}
               >
                 {link.name}
               </Link>
             ))}
-            <Button className="px-4 py-2 text-xs" onClick={openModal}>Book Appointment</Button>
           </div>
         </div>
       </div>

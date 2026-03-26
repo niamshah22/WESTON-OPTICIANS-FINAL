@@ -31,7 +31,7 @@ export const SectionTitle = ({ children, subtitle, light = false }: { children: 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={cn("text-4xl md:text-5xl font-display font-bold mb-4", light ? "text-white" : "text-black")}
+      className={cn("text-4xl md:text-5xl font-serif font-bold mb-4", light ? "text-white" : "text-black")}
     >
       {children}
     </motion.h2>

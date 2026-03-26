@@ -140,7 +140,7 @@ export default function GoogleReviews() {
   };
 
   return (
-    <section className="py-24 bg-zinc-50">
+    <section className="pt-12 pb-24 bg-zinc-50">
       <style>{`
         @keyframes review-scroll {
           0% { transform: translateX(0); }
