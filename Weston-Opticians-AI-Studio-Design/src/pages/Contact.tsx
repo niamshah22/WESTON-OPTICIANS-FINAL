@@ -15,22 +15,27 @@ export default function Contact() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-16 pb-20 bg-gradient-to-b from-brand-purple/5 to-white">
+      <section className="pt-16 pb-10 bg-gradient-to-b from-brand-purple/5 to-white">
         <div className="container mx-auto px-6 md:px-12">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="text-brand-purple font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Get In Touch</span>
-            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight">
-              Contact <span className="text-brand-purple italic">Us.</span>
-            </h1>
-            <p className="text-xl text-zinc-600 max-w-2xl leading-relaxed">
-              Whether you'd like to book an appointment, ask a question, or just pop in for a browse — we'd love to hear from you.
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <span className="text-brand-purple font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Get In Touch</span>
+              <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 leading-tight tracking-tight">
+                Contact <span className="text-brand-purple italic">Us.</span>
+              </h1>
+              <p className="text-xl text-zinc-600 max-w-2xl leading-relaxed">
+                Whether you'd like to book an appointment, ask a question, or just pop in for a browse — we'd love to hear from you.
+              </p>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
+              <img src="/images/shop-front.jpg" alt="Weston Opticians shop front" className="w-full rounded-2xl shadow-lg" />
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Contact Info + Form */}
-      <section className="py-24 bg-white">
+      <section className="py-8 bg-white">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Info Column */}
@@ -46,7 +51,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-bold text-lg mb-1">Our Location</p>
-                    <p className="text-zinc-600">124 High Street, Weston-super-Mare, BS23 1HP</p>
+                    <p className="text-zinc-600">82A High Street, Watford, WD17 2BP</p>
                   </div>
                 </div>
 
@@ -56,7 +61,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-bold text-lg mb-1">Call Us</p>
-                    <p className="text-zinc-600">01934 624 882</p>
+                    <p className="text-zinc-600">01923 241100</p>
                   </div>
                 </div>
 
@@ -66,7 +71,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-bold text-lg mb-1">Email</p>
-                    <p className="text-zinc-600">info@westonopticians.co.uk</p>
+                    <p className="text-zinc-600">westonopticians@gmail.com</p>
                   </div>
                 </div>
 
@@ -76,33 +81,26 @@ export default function Contact() {
                   </div>
                   <div className="grid grid-cols-2 gap-x-8 gap-y-1">
                     <p className="font-bold text-lg col-span-2 mb-1">Opening Hours</p>
-                    <span className="text-zinc-500 text-sm">Mon - Fri</span>
+                    <span className="text-zinc-500 text-sm">Mon - Sat</span>
                     <span className="text-zinc-800 text-sm font-medium">9:00 - 17:30</span>
-                    <span className="text-zinc-500 text-sm">Saturday</span>
-                    <span className="text-zinc-800 text-sm font-medium">9:00 - 17:00</span>
                     <span className="text-zinc-500 text-sm">Sunday</span>
                     <span className="text-zinc-800 text-sm font-medium">Closed</span>
                   </div>
                 </div>
               </div>
 
-              {/* Map */}
-              <div className="relative rounded-3xl overflow-hidden h-[300px] shadow-xl">
-                <img
-                  src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1000&auto=format&fit=crop"
-                  alt="Map Location"
-                  className="w-full h-full object-cover grayscale"
-                  referrerPolicy="no-referrer"
+              {/* Google Maps */}
+              <div className="rounded-3xl overflow-hidden h-[300px] shadow-xl">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2478.5!2d-0.3965!3d51.6565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876133a1d2b7b8d%3A0x0!2s82A+High+Street%2C+Watford+WD17+2BP!5e0!3m2!1sen!2suk!4v1"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Weston Opticians Watford Location"
                 />
-                <div className="absolute inset-0 bg-brand-purple/10" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-brand-purple rounded-full animate-ping opacity-20" />
-                    <div className="w-12 h-12 bg-brand-purple rounded-full flex items-center justify-center text-white shadow-2xl relative z-10">
-                      <MapPin className="w-6 h-6" />
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
