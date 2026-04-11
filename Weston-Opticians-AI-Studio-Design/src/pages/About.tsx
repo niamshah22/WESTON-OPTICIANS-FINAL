@@ -3,6 +3,14 @@ import { motion } from 'motion/react';
 import { ArrowRight, Heart, Users, Award, Clock } from 'lucide-react';
 import { Button, SectionTitle } from '../components/ui';
 
+const team = [
+  { name: "Harsha Shah", role: "Director & Optometrist", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop" },
+  { name: "Piush Shah", role: "Director & Practice Manager", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop" },
+  { name: "Tom", role: "Dispensing Optician & Technician", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" },
+  { name: "Preeyan", role: "Optometrist", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&auto=format&fit=crop" },
+  { name: "Jamie", role: "Optometrist", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop" },
+];
+
 const values = [
   { icon: <Heart className="w-6 h-6" />, title: "Personal Care", desc: "Every patient is treated as an individual, not a number. We take the time to listen and understand your needs." },
   { icon: <Award className="w-6 h-6" />, title: "Clinical Excellence", desc: "We invest in the latest diagnostic technology and ongoing professional development for our team." },
@@ -69,6 +77,38 @@ export default function About() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet The Team */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 md:px-12">
+          <SectionTitle subtitle="The people behind your eye care experience.">
+            Meet The <span className="text-brand-purple">Team.</span>
+          </SectionTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mx-auto">
+            {team.map((member, i) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+                className="text-center group"
+              >
+                <div className="relative overflow-hidden rounded-3xl mb-6 aspect-[3/4] lg:aspect-square">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <h3 className="text-xl font-display font-bold">{member.name}</h3>
+                <p className="text-brand-purple font-medium mt-1">{member.role}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

@@ -7,10 +7,10 @@ import { useBookingModal } from './BookingModal';
 
 const navLinks = [
   { name: 'Home', path: '/' },
+  { name: 'About Us', path: '/about' },
   { name: 'Eye Care', path: '/eye-care' },
   { name: 'Eyewear', path: '/eyewear' },
   { name: 'Contact Lenses', path: '/contact-lenses' },
-  { name: 'About Us', path: '/about' },
   { name: 'Blog', path: '/blog' },
   { name: 'Contact Us', path: '/contact' },
 ];
